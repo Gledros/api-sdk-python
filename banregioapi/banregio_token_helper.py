@@ -10,6 +10,7 @@ class BanregioTokenHelper():
         self.redirect_uri = redirect_uri
         self.base_uri = base_uri
         self.refresh_token = None
+        self.expires_in = None
         self.api = OAuth2Service(
             client_id=client_id,
             client_secret=secret_key,
@@ -34,6 +35,7 @@ class BanregioTokenHelper():
 
             self.refresh_token = response.json()['refresh_token']
             self.access_token = response.json()['access_token']
+            self.expires_in = response.json()['expires_in']
             return self.access_token
 
         except KeyError as e:
@@ -70,6 +72,7 @@ class BanregioTokenHelper():
 
             self.refresh_token = response.json()['refresh_token']
             self.access_token = response.json()['access_token']
+            self.expires_in = response.json()['expires_in']
             return self.access_token
 
         except KeyError as e:
