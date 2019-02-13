@@ -3,6 +3,7 @@ from rauth import OAuth2Service
 # Errors
 PROCESS_TOKEN_ERROR = "Error to handle the request, provider response with: {raw}"
 PROCESS_REFRESH_TOKEN_ERROR = "Refresh token is not present. You are sure to get the get_access_token() method successfully first?"
+PROCESS_EXPIRE_TIME_ERROR = "Expire time is not present. You are sure to get the get_access_token() method successfully first?"
 
 class BanregioTokenHelper():
 
@@ -47,6 +48,13 @@ class BanregioTokenHelper():
             return self.refresh_token
         else:
             raise StandardError(PROCESS_REFRESH_TOKEN_ERROR)
+
+    def get_expiration_time(self):
+
+        if self.expires_in:
+            return self.expires_in
+        else:
+            raise StandardError(PROCESS_EXPIRE_TIME_ERROR)
 
     def get_access_token_with_client_credentials(self):
 
